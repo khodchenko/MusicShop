@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var btnPlus: Button? = null
     private var btnMinus: Button? = null
     private var spinner: Spinner? = null
-    private var price:Double=0.0
+    private var price: Double = 0.0
     private var goodsMap: HashMap<String, Double> = HashMap()
     private var spinnerArrayList: ArrayList<String> = ArrayList()
-    private var goodsName: String? =null
-
+    private var goodsName: String? = null
+    private var priceTextView: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner.adapter = adapter
         spinner.onItemSelectedListener = this
 
+        priceTextView = findViewById<TextView>(R.id.textView_PriceValue)
 
 
         goodsMap["Guitar"] = 500.0
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun increaseQuantity() {
         textQuantityValue?.text = quantityCounter++.toString()
+        priceTextView?.text = (quantityCounter * price).toString()
     }
 
     private fun decreaseQuantity() {
@@ -65,13 +67,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         @Suppress("DEPRECATED_IDENTITY_EQUALS")
         if (quantityCounter !== 0) quantityCounter--
         textQuantityValue?.text = quantityCounter.toString()
+        priceTextView?.text = (quantityCounter * price).toString()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         goodsName = spinner!!.selectedItem.toString()
         price = goodsMap[goodsName] as Double
-        val priceTextView = findViewById<TextView>(R.id.textView_PriceValue)
-        priceTextView.text = "" + quantityCounter * price
+
+        priceTextView?.text = (quantityCounter * price).toString()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
