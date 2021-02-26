@@ -58,7 +58,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     private fun increaseQuantity() {
-        textQuantityValue?.text = quantityCounter++.toString()
+        quantityCounter++
+        textQuantityValue?.text = quantityCounter.toString()
         priceTextView?.text = (quantityCounter * price).toString()
     }
 
