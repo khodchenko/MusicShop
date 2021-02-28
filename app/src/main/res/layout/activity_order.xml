@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
 
+    <TextView
+        android:id="@+id/textView_OrderUserName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="@string/nullo"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_OrderGoodsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nullo"
+        android:textSize="26sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView_OrderUserName" />
+
+    <TextView
+        android:id="@+id/textView_OrderQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="quantity null"
+        android:textSize="26sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView_OrderGoodsName" />
+
+    <TextView
+        android:id="@+id/textView_OrderPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="price null"
+        android:textSize="26sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView_OrderQuantity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

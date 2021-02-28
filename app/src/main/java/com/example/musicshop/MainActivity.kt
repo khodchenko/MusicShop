@@ -2,10 +2,11 @@ package com.example.musicshop
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -89,14 +90,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
-    fun addToCard(){
-        val order: Order? = null
-        order?.userName= userNameEditText?.getText().toString()
-        order?.goodsName = goodsName.toString()
-        order?.quantity = quantityCounter
-        order?.orderPrice = quantityCounter * price
-
-        val intent = Intent (this, OrderActivity::class.java)
+    private fun addToCard(){
+        var intent = Intent (this, OrderActivity::class.java)
+        intent.putExtra("userName",userNameEditText?.text.toString())
+        intent.putExtra("goodsName",goodsName.toString())
+        intent.putExtra("quantity",quantityCounter.toString())
+        intent.putExtra("orderPrice",(quantityCounter * price).toString())
         startActivity(intent)
 
     }
