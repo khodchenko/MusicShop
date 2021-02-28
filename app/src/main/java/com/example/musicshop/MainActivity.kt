@@ -1,5 +1,6 @@
 package com.example.musicshop
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private var spinnerArrayList: ArrayList<String> = ArrayList()
     private var goodsName: String? = null
     private var priceTextView: TextView? = null
-
+    private var btnAddOrder: Button? = null
+    private var userNameEditText:EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             decreaseQuantity()
         }
 
-
         spinner = findViewById(R.id.spinner)
 
         spinnerArrayList.add("Guitar")
@@ -47,12 +48,19 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner.adapter = adapter
         spinner.onItemSelectedListener = this
 
-        priceTextView = findViewById<TextView>(R.id.textView_PriceValue)
-
+        priceTextView = findViewById(R.id.textView_PriceValue)
 
         goodsMap["Guitar"] = 500.0
         goodsMap["Drums"] = 1500.0
         goodsMap["Keyboard"] = 1000.0
+
+        userNameEditText = findViewById(R.id.editText_User_Name)
+
+
+        btnAddOrder = findViewById(R.id.btn_addToCart)
+        btnAddOrder?.setOnClickListener{
+            addToCard()
+        }
 
     }
 
@@ -79,6 +87,17 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
+
+    }
+    fun addToCard(){
+        val order: Order? = null
+        order?.userName= userNameEditText?.getText().toString()
+        order?.goodsName = goodsName.toString()
+        order?.quantity = quantityCounter
+        order?.orderPrice = quantityCounter * price
+
+        val intent = Intent (this, OrderActivity::class.java)
+        startActivity(intent)
+
     }
 }
