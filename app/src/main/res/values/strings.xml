@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MusicShop</string>
     <string name="nullo">null</string>
+    <string name="quantity_null">quantity null</string>
+    <string name="price_null">price null</string>
+    <string name="send_order">Send order</string>
 
     <string-array name="music_instruments">
         <item>Guitar</item>
